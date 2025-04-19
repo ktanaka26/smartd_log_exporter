@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  smartd-exporter:
+    image: smartd-exporter:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./test/var/log:/var/log:ro
+      - ./test/var/lib/node_exporter/textfile_collector:/metrics
+    environment:
+      TZ: Asia/Tokyo
+      SYSLOG_PATH: /var/log/syslog
+      OUTPUT_PATH: /metrics/smartd.prom
+      TIMEDELTA_MINUTES: 180
+    restart: always

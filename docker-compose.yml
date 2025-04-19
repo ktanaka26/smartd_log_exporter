@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  smartd-exporter:
+    image: ghcr.io/ktanaka26/smartd_log_exporter:0.0.1
+    volumes:
+      - /var/log:/var/log:ro
+      - /var/lib/node_exporter/textfile_collector:/metrics
+    environment:
+      TZ: Asia/Tokyo
+      SYSLOG_PATH: /var/log/syslog
+      OUTPUT_PATH: /metrics/smartd.prom
+      TIMEDELTA_MINUTES: 180
+    restart: always

@@ -1,0 +1,1 @@
+# smartd-exporter for Prometheus

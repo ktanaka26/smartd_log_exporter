@@ -2,13 +2,10 @@ version: '3.8'
 
 services:
   smartd-exporter:
-    image: smartd-exporter:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/ktanaka26/smartd_log_exporter:0.0.1
     volumes:
-      - ./test/var/log:/var/log:ro
-      - ./test/var/lib/node_exporter/textfile_collector:/metrics
+      - /var/log:/var/log:ro
+      - /var/lib/node_exporter/textfile_collector:/metrics
     environment:
       TZ: Asia/Tokyo
       SYSLOG_PATH: /var/log/syslog
